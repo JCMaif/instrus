@@ -62,7 +62,7 @@ const PlayerForm = ({ player, onChange, onSubmit, onCancel, submitLabel, isEditi
             <input
                 type="text"
                 placeholder="Surnom"
-                value={player.nickname || ''}
+                value={player.nickname || ' '}
                 onChange={(e) => onChange(prev => ({...prev, nickname: e.target.value}))}
             />
             <div className="form-pupitre">
