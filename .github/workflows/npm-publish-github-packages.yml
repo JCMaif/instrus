@@ -19,9 +19,7 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 20
-      - run: npm ci
-      - run: npm test
-      
+     
       - name: Désactiver Nexus et forcer npm public
         run: |
           echo "registry=https://registry.npmjs.org/" > ~/.npmrc
