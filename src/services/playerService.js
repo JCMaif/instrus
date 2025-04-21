@@ -23,9 +23,9 @@ const isInstrumentAlreadyAssigned = async (instrumentId, excludePlayerId = null)
 };
 
 export const createPlayer = async (playerData) => {
-    if (!await isNicknameUnique(playerData.nickname)) {
-        throw new Error("Nickname already used");
-    }
+    // if (!await isNicknameUnique(playerData.nickname)) {
+    //     throw new Error("Nickname already used");
+    // }
 
     if (playerData.instrumentId && await isInstrumentAlreadyAssigned(playerData.instrumentId)) {
         throw new Error("Instrument is already assigned to another player");
@@ -85,9 +85,9 @@ export const readAllPlayers = async () => {
 };
 
 export const updatePlayer = async (playerId, playerData) => {
-    if (!await isNicknameUnique(playerData.nickname, playerId)) {
-        throw new Error("Nickname already used");
-    }
+    // if (!await isNicknameUnique(playerData.nickname, playerId)) {
+    //     throw new Error("Nickname already used");
+    // }
 
     const newInstrumentId = extractId(playerData.instrumentId);
     if (newInstrumentId && await isInstrumentAlreadyAssigned(newInstrumentId, playerId)) {

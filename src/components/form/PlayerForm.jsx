@@ -49,27 +49,27 @@ const PlayerForm = ({ player, onChange, onSubmit, onCancel, submitLabel, isEditi
                 type="text"
                 placeholder="Prénom"
                 value={player.firstname || ''}
-                onChange={(e) => onChange(prev => ({ ...prev, firstname: e.target.value }))}
+                onChange={(e) => onChange(prev => ({...prev, firstname: e.target.value}))}
                 required
             />
             <input
                 type="text"
                 placeholder="Nom"
                 value={player.lastname || ''}
-                onChange={(e) => onChange(prev => ({ ...prev, lastname: e.target.value.toUpperCase() }))}
+                onChange={(e) => onChange(prev => ({...prev, lastname: e.target.value.toUpperCase()}))}
                 required
             />
             <input
                 type="text"
                 placeholder="Surnom"
                 value={player.nickname || ''}
-                onChange={(e) => onChange(prev => ({ ...prev, nickname: e.target.value }))}
+                onChange={(e) => onChange(prev => ({...prev, nickname: e.target.value}))}
             />
             <div className="form-pupitre">
                 <p>Pupitre</p>
                 <select
                     value={player.pupitre}
-                    onChange={(e) => onChange(prev => ({ ...prev, pupitre: e.target.value, instrumentId: '' }))}
+                    onChange={(e) => onChange(prev => ({...prev, pupitre: e.target.value, instrumentId: ''}))}
                 >
                     <option value=''>Sélectionnez un pupitre</option>
                     <option value="Caixa">Caixa</option>
@@ -79,6 +79,15 @@ const PlayerForm = ({ player, onChange, onSubmit, onCancel, submitLabel, isEditi
                     <option value="Repinique">Répinique</option>
                 </select>
             </div>
+            <select
+                value={player.instrumentId || ''}
+                onChange={(e) => onChange(prev => ({...prev, instrumentId: e.target.value}))}
+            >
+                <option value=''>-- Choisir un instrument --</option>
+                {availableInstruments.map(instr => (
+                    <option key={instr.id} value={instr.id}>{instr.code}</option>
+                ))}
+            </select>
             <div className="form-actions">
                 <button type="submit">{submitLabel}</button>
                 <button type="button" onClick={onCancel}>Annuler</button>
