@@ -49,13 +49,14 @@ jobs:
         with:
           node-version: 20
           registry-url: https://npm.pkg.github.com/
+
       - name: Configurer le registre GitHub Packages
         run: |
           echo "//npm.pkg.github.com/:_authToken=${{ secrets.GITHUB_TOKEN }}" > ~/.npmrc
           npm config list
 
       - name: Installer les dépendances
-        run: npm ci
+        run: npm install --no-cache --prefer-online
 
       - name: Publier le package
         run: npm publish
