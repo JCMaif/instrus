@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { getAvailableInstruments } from '../../services/InstrumentService';
+import { getAvailableInstruments } from '../../services/instrumentService';
 import {createPlayer, updatePlayer} from "../../services/playerService.js";
 
 const PlayerForm = ({ player, onChange, onSubmit, onCancel, submitLabel, isEditing, filterPupitre }) => {
