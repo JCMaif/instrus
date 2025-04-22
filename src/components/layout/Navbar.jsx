@@ -39,7 +39,7 @@ const Navbar = ({ onSearch }) => {
     const handleLogout = async () => {
         try {
             await signOut(auth);
-            navigate("/login");
+            navigate("instrus/login");
         } catch (error) {
             console.error("Error logging out:", error);
         }
@@ -66,10 +66,10 @@ const Navbar = ({ onSearch }) => {
                 aria-label="Menu principal"
             >
                 <ul>
-                    <li><Link to="/players">Joueurs</Link></li>
-                    <li><Link to="/instruments">Instruments</Link></li>
-                    {/*<li><Link to="/tripods">Trépieds</Link></li>*/}
-                    {/*<li><Link to="/loans">Prêts</Link></li>*/}
+                    <li><Link to="instrus/players">Joueurs</Link></li>
+                    <li><Link to="instrus/instruments">Instruments</Link></li>
+                    {/*<li><Link to="instrus/tripods">Trépieds</Link></li>*/}
+                    {/*<li><Link to="instrus/loans">Prêts</Link></li>*/}
 
                     <li>
                         <input

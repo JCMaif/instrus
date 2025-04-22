@@ -17,7 +17,7 @@ export const Auth = () => {
 
         try {
             await signInWithEmailAndPassword(auth, email, password);
-            navigate("/players");
+            navigate("/instrus/players");
         } catch (error) {
             setError(error.message);
             console.error(error);

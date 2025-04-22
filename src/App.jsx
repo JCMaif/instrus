@@ -18,9 +18,9 @@ const App = () => {
             <BrowserRouter>
                 <Navbar onSearch={setSearchTerm} />
                 <Routes>
-                    <Route path="/login" element={<Auth/>}/>
-                    <Route path="/players" element={<PlayerList searchTerm={searchTerm}/>}/>
-                    <Route path="/instruments" element={<InstrumentList searchTerm={searchTerm}/>}/>
+                    <Route path="instrus/login" element={<Auth/>}/>
+                    <Route path="instrus/players" element={<PlayerList searchTerm={searchTerm}/>}/>
+                    <Route path="instrus/instruments" element={<InstrumentList searchTerm={searchTerm}/>}/>
                     {/*<Route path="/tripods" element={<TripodList />} />*/}
                     {/*<Route path="/loans" element={<LoanList />} />*/}
                 </Routes>
