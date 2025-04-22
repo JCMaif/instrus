@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import Modal from 'react-modal';
+import ReactPaginate from "react-paginate";
 import { FaEdit, FaPlus, FaTrash, FaSortAlphaDown } from "react-icons/fa";
 import { useData } from "../../context/dataContext.jsx";
 import {deleteInstrument, readAllInstruments} from "../../services/instrumentService.js";
@@ -15,12 +16,14 @@ const initialInstrument = {
     pupitre: ''
 };
 
-const InstrumentList = () => {
+const InstrumentList = ({ searchTerm}) => {
     const { instruments, setInstruments } = useData();
     const [selectedInstrument, setSelectedInstrument] = useState(null);
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [isEditing, setIsEditing] = useState(false);
     const [sortConfig, setSortConfig] = useState({ key: null, direction: 'ascending' });
+    const [currentPage, setCurrentPage] = useState(0);
+    const itemsPerPage = 10;
 
     const fetchInstruments = async () => {
         try {
@@ -34,6 +37,10 @@ const InstrumentList = () => {
     useEffect(() => {
         fetchInstruments()
     }, []);
+
+    const handlePageClick = (data) => {
+        setCurrentPage(data.selected);
+    };
 
     const openModalForEdit = (instrument) => {
         setSelectedInstrument(instrument);
@@ -98,6 +105,11 @@ const InstrumentList = () => {
         });
     };
 
+    const filteredInstruments = sortedItems().filter(item =>
+    item.code.toLowerCase().includes(searchTerm.toLowerCase()));
+
+    const currentItems = filteredInstruments.slice(currentPage * itemsPerPage, (currentPage + 1) * itemsPerPage);
+
     return (
         <div className="table-list">
             <table>
@@ -113,7 +125,7 @@ const InstrumentList = () => {
                 </tr>
                 </thead>
                 <tbody>
-                {sortedItems().map(instrument => (
+                {currentItems.map(instrument => (
                     <tr key={instrument.id}>
                         <td>{instrument.code}</td>
                         <td>{instrument.hasLight ? 'Oui' : 'Non'}</td>
@@ -129,6 +141,17 @@ const InstrumentList = () => {
                 ))}
                 </tbody>
             </table>
+            <ReactPaginate
+                previousLabel={'previous'}
+                nextLabel={'next'}
+                breakLabel={'...'}
+                pageCount={Math.ceil(filteredInstruments.length / itemsPerPage)}
+                marginPagesDisplayed={2}
+                pageRangeDisplayed={5}
+                onPageChange={handlePageClick}
+                containerClassName={'pagination'}
+                activeClassName={'active'}
+            />
             <Modal
                 isOpen={isModalOpen}
                 onRequestClose={closeModal}

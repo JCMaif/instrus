@@ -1,15 +1,15 @@
-import {Link} from "react-router-dom";
-import {auth} from "../../config/firebase";
-import {signOut} from "firebase/auth";
-import {useNavigate} from "react-router-dom";
-import "./Navbar.css";
 import {useEffect, useRef, useState} from "react";
+import {Link, useNavigate} from "react-router-dom";
+import {signOut} from "firebase/auth";
+import {auth} from "../../config/firebase";
+import "./Navbar.css";
 
-const Navbar = () => {
+const Navbar = ({ onSearch }) => {
     const navigate = useNavigate();
     const menuRef = useRef(null);
     const buttonRef = useRef(null);
     const [menuOpen, setMenuOpen] = useState(false);
+    const [searchTerm, setSearchTerm] = useState("");
 
     useEffect(() => {
         const handleClickOutside = (event) => {
@@ -30,6 +30,12 @@ const Navbar = () => {
         };
     }, []);
 
+
+    const handleSearchChange = (event) => {
+        setSearchTerm(event.target.value);
+        onSearch(event.target.value);
+    };
+
     const handleLogout = async () => {
         try {
             await signOut(auth);
@@ -41,7 +47,6 @@ const Navbar = () => {
 
     return (
         <>
-
             <button
                 ref={buttonRef}
                 className="menu-button"
@@ -63,8 +68,17 @@ const Navbar = () => {
                 <ul>
                     <li><Link to="/players">Joueurs</Link></li>
                     <li><Link to="/instruments">Instruments</Link></li>
-                    <li><Link to="/tripods">Trépieds</Link></li>
-                    <li><Link to="/loans">Prêts</Link></li>
+                    {/*<li><Link to="/tripods">Trépieds</Link></li>*/}
+                    {/*<li><Link to="/loans">Prêts</Link></li>*/}
+
+                    <li>
+                        <input
+                            type="text"
+                            placeholder="Rechercher..."
+                            value={searchTerm}
+                            onChange={handleSearchChange}
+                        />
+                    </li>
                     <li>
                         <button onClick={handleLogout}>Logout</button>
                     </li>
