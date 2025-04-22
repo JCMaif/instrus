@@ -15,12 +15,12 @@ const App = () => {
         <DataProvider>
             <BrowserRouter>
                 <Routes>
-                    <Route path="/instrus/login" element={<Auth />} />
+                    <Route path="/instrus/" element={<Auth />} />
                     <Route element={<Navbar onSearch={setSearchTerm} />}>
                         <Route path="instrus/players" element={<PlayerList searchTerm={searchTerm} />} />
                         <Route path="instrus/instruments" element={<InstrumentList searchTerm={searchTerm} />} />
                     </Route>
-                        {/*<Route path="/" element={<Navigate to="/instrus/login" />} />*/}
+                        <Route path="/instrus" element={<Navigate to="/instrus/" />} />
                     {/*<Route path="*" element={<Navigate to="/instrus/login" />} />*/}
                 </Routes>
             </BrowserRouter>

@@ -29,7 +29,7 @@
     "globals": "^16.0.0",
     "vite": "^6.3.1"
   },
-  "homepage": "https://jcmaif.github.io/instrus",
+  "homepage": "https://jcmaif.github.io/instrus/",
   "publishConfig": {
     "registry": "https://npm.pkg.github.com/"
   }

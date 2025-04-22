@@ -39,7 +39,7 @@ const Navbar = ({ onSearch }) => {
     const handleLogout = async () => {
         try {
             await signOut(auth);
-            navigate("instrus/login");
+            navigate("instrus/");
         } catch (error) {
             console.error("Error logging out:", error);
         }
