@@ -1,5 +1,5 @@
 import {useEffect, useRef, useState} from "react";
-import {Link, useNavigate} from "react-router-dom";
+import {Link, useNavigate, Outlet} from "react-router-dom";
 import {signOut} from "firebase/auth";
 import {auth} from "../../config/firebase";
 import "./Navbar.css";
@@ -84,6 +84,7 @@ const Navbar = ({ onSearch }) => {
                     </li>
                 </ul>
             </nav>
+            <Outlet />
         </>
     )
         ;

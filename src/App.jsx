@@ -1,13 +1,11 @@
-import {BrowserRouter, Routes, Route} from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import Modal from 'react-modal';
-import {Auth} from './components/auth/Auth'
-
+import { Auth } from './components/auth/Auth';
 import PlayerList from "./components/players/PlayerList.jsx";
 import InstrumentList from "./components/instruments/InstrumentList.jsx";
 import Navbar from "./components/layout/Navbar.jsx";
-import {DataProvider} from "./context/dataContext.jsx";
-import {useState} from "react";
-
+import { DataProvider } from "./context/dataContext.jsx";
+import { useState } from "react";
 
 const App = () => {
     Modal.setAppElement('#root');
@@ -16,13 +14,14 @@ const App = () => {
     return (
         <DataProvider>
             <BrowserRouter>
-                <Navbar onSearch={setSearchTerm} />
                 <Routes>
-                    <Route path="instrus/login" element={<Auth/>}/>
-                    <Route path="instrus/players" element={<PlayerList searchTerm={searchTerm}/>}/>
-                    <Route path="instrus/instruments" element={<InstrumentList searchTerm={searchTerm}/>}/>
-                    {/*<Route path="/tripods" element={<TripodList />} />*/}
-                    {/*<Route path="/loans" element={<LoanList />} />*/}
+                    <Route path="/instrus/login" element={<Auth />} />
+                    <Route element={<Navbar onSearch={setSearchTerm} />}>
+                        <Route path="instrus/players" element={<PlayerList searchTerm={searchTerm} />} />
+                        <Route path="instrus/instruments" element={<InstrumentList searchTerm={searchTerm} />} />
+                    </Route>
+                        {/*<Route path="/" element={<Navigate to="/instrus/login" />} />*/}
+                    {/*<Route path="*" element={<Navigate to="/instrus/login" />} />*/}
                 </Routes>
             </BrowserRouter>
         </DataProvider>
@@ -30,4 +29,3 @@ const App = () => {
 };
 
 export default App;
-
