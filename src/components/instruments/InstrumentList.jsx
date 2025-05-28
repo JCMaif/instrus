@@ -6,7 +6,6 @@ import {useData} from "../../context/dataContext.jsx";
 import {deleteInstrument, readAllInstruments} from "../../services/instrumentService.js";
 import InstrumentForm from "../form/InstrumentForm.jsx";
 import {readAllPlayers} from '../../services/playerService';
-import PlayerForm from '../form/PlayerForm';
 
 const initialInstrument = {
     code: '', hasLight: false, isFree: true, isSticked: true, observation: '', playerId: '', pupitre: ''

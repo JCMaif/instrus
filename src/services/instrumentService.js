@@ -35,7 +35,6 @@ export const createInstrument = async (instrumentData) => {
 export const readInstrument = async (instrumentId) => {
     try {
         const instrumentData = await instrumentService.read(instrumentId);
-        console.log("Instrument data:", instrumentData);
         return instrumentData;
     } catch (error) {
         console.error("Error reading instrument:", error);
